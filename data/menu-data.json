@@ -1,0 +1,30 @@
+{
+  "primi": [
+    {
+      "nome": "lasagna",
+      "descrizione": "lasagna con carne macinata",
+      "immagine": "/images/default-primi.jpg"
+    }
+  ],
+  "secondi": [
+    {
+      "nome": "pollo",
+      "descrizione": "pollo arrosto",
+      "immagine": "/images/default-secondi.jpg"
+    }
+  ],
+  "poke": [
+    {
+      "nome": "pokè",
+      "descrizione": "un bel baccalà",
+      "immagine": "/images/default-poke.jpg"
+    }
+  ],
+  "insalatone": [
+    {
+      "nome": "insalatona",
+      "descrizione": "insalatona con tonno",
+      "immagine": "/images/default-insalatone.jpg"
+    }
+  ]
+}

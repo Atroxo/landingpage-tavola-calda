@@ -1,0 +1,74 @@
+<!-- admin.html - Pagina riservata per la gestione del menù con Header e Footer -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Menù</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="admin.js" defer></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+        if (isLoggedIn) {
+            document.getElementById('logoutButton').style.display = 'inline-block';
+        }
+    });
+</script>
+
+</head>
+<body>
+    <header class="hero">
+        <h1>Pannello di Gestione Menù</h1>
+        <p>Accedi per modificare il menù.</p>
+    </header>
+
+
+
+    <section class="menu">
+        <h2>Gestione Menù</h2>
+
+        <div id="loginSection">
+            <input type="password" id="passwordInput" placeholder="Inserisci la password">
+            <button onclick="checkPassword()">Accedi</button>
+            <button onclick="logout()" style="display: none;" id="logoutButton">Logout</button>
+        </div>
+
+       <form id="addDishForm" style="display: none;">
+    <input type="text" id="dishName" placeholder="Nome del piatto" required>
+    <input type="text" id="dishDescription" placeholder="Descrizione del piatto" required>
+    
+    <!-- Menu a tendina per la categoria -->
+    <label for="dishCategory">Categoria del Piatto:</label>
+    <select id="dishCategory" required>
+    	<option value="primi">Primo Piatto</option>
+    	<option value="secondi">Secondo Piatto</option>
+    	<option value="poke">Pokè</option>
+    	<option value="insalatone">Insalatone</option>
+    </select>
+
+    <input type="file" id="dishImageFile" accept="image/*">
+    <input type="text" id="dishImageURL" placeholder="Oppure URL immagine">
+
+    <button type="submit">Aggiungi Piatto</button>
+</form>
+
+        <h3>Primi Piatti</h3>
+        <ul id="admin-primi-list"></ul>
+
+        <h3>Secondi Piatti</h3>
+        <ul id="admin-secondi-list"></ul>
+
+	<h3>Pokè</h3>
+	<ul id="admin-poke-list"></ul>
+
+	<h3>Insalatone</h3>
+	<ul id="admin-insalatone-list"></ul>
+    </section>
+
+    <footer>
+        <p>© 2025 Loco Snack Bar. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

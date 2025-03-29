@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loco Snack Bar</title>
+    <link rel="stylesheet" href="style.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="hero">
+      <img src='Logo.jpg' alt="Logo Loco Snack Bar" class="logo">
+      <h1>Loco Snack Bar</h1>
+      <p>Caffetteria, Rosticceria, Tavola calda.</p>
+      <a href="#menu" class="cta-button">Scopri il Menù di Oggi</a> 
+    </header>
+
+ <div class="gradient-divider"></div>
+
+	<section id="menu" class="menu">
+    <h2 id="menu-title">Il menù di oggi - <span id="current-date"></span></h2>
+
+ <div class="menu-tabs">
+    <button class="tab-link active" onclick="openTab(event, 'primi')">Primi Piatti</button>
+    <button class="tab-link" onclick="openTab(event, 'secondi')">Secondi Piatti</button>
+    <button class="tab-link" onclick="openTab(event, 'poke')">Pokè</button>
+    <button class="tab-link" onclick="openTab(event, 'insalatone')">Insalatone</button>
+ </div>
+
+        <!-- Contenuto delle tab -->
+        <div id="primi" class="tab-content active">
+            <ul id="primi-list"></ul>
+        </div>
+
+        <div id="secondi" class="tab-content">
+            <ul id="secondi-list"></ul>
+        </div>
+	<div id="poke" class="tab-content">
+    	    <ul id="poke-list"></ul>
+	</div>
+
+	<div id="insalatone" class="tab-content">
+            <ul id="insalatone-list"></ul>
+	</div>
+    </section>
+
+    <!-- Lightbox per i dettagli del piatto -->
+    <div id="lightbox" class="lightbox" style="display:none;">
+        <div class="lightbox-content">
+            <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Piatto">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-description"></p>
+        </div>
+    </div>
+
+ <!--<div class="gradient-divider"></div> -->
+
+<h2 id="infotitolo">Il Nostro Locale e Come Trovarci</h2>
+
+<!-- Sezione Slideshow -->
+<section class="slideshow-container">
+    <div class="slideshow">
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto1.jpg');"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto2.jpg');"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto3.jpg');"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto4.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto5.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto6.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto7.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto8.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto9.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto10.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto11.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto12.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto13.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto14.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto15.jpg');background-size: contain;"></div>
+        <div class="slide" style="background-image: url('/images/prodotti/prodotto16.jpg');background-size: contain;"></div>
+
+	<!-- Pulsanti navigazione -->
+        <button class="prev-slide" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next-slide" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+</section>
+
+<section class="info-section">
+    <div class="info-content">
+        <!-- Galleria Immagini -->
+        <div class="gallery-grid">
+            <img src="/images/imginfo_4.jpg" alt="Sala principale">
+            <img src="/images/imginfo_2.jpg" alt="Sala esterna">
+            <img src="/images/imginfo_1.jpg" alt="Area bar">
+        </div>
+
+        <!-- Mappa Google -->
+        <div class="google-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3040.5809370861025!2d15.815859776425096!3d40.35164135959759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1338d9e0d5471d73%3A0xe43cd9955fe121bf!2sLoco%20Snack%20bar!5e0!3m2!1sit!2sit!4v1736374851028!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <!-- Orari di Apertura -->
+    <div class="hours-grid">
+        <div>
+            <h3>Orari Bar</h3>
+            <p>Lunedì - Venerdì: 7:00 - 22:00</p>
+            <p>Sabato - Domenica: 8:00 - 23:00</p>
+        </div>
+        <div>
+            <h3>Orari Tavola Calda</h3>
+            <p>Lunedì - Venerdì: 12:00 - 15:00</p>
+            <p>Sabato - Domenica: 12:00 - 16:00</p>
+        </div>
+    </div>
+</section>
+
+    <section id="contatti" class="contact">
+    <h2><i class="fas fa-envelope"></i> Hai Domande? Scrivici!</h2>
+    <p class="contact-description">Prenota il tuo tavolo o chiedi informazioni sul nostro menù. Saremo felici di aiutarti!</p>
+    <div class="contact-container">
+        <form>
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" placeholder="Il tuo nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="La tua email" required>
+            </div>
+            <div class="form-group full-width">
+                <label for="messaggio">Messaggio</label>
+                <textarea id="messaggio" placeholder="Scrivi il tuo messaggio qui..." required></textarea>
+            </div>
+            <button type="submit">Invia</button>
+        </form>
+        <div class="contact-image">
+            <img src="/images/imgcontact.jpg" alt="Contattaci">
+        </div>
+    </div>
+</section>
+
+<!-- Pulsante Fluttuante per WhatsApp -->
+<div class="whatsapp-float" onclick="toggleWhatsAppChat()">
+    <img src="/images/whatsapp-icon.png" alt="Chatta con noi su WhatsApp">
+</div>
+
+<!-- Popup della Chat -->
+<div class="whatsapp-popup" id="whatsappPopup">
+    <div class="popup-header">
+        <span>💬 Chatta con noi su WhatsApp</span>
+        <button class="close-popup" onclick="toggleWhatsAppChat()">×</button>
+    </div>
+    <p>Benvenuto! Come possiamo aiutarti oggi?</p>
+    <a href="https://wa.me/+393408669454" target="_blank" class="start-chat-button">
+        Avvia Chat
+    </a>
+</div>
+
+ <div class="gradient-divider"></div>
+
+    <footer>
+        <p>&copy; 2025 Loco Snack Bar. Tutti i diritti riservati.</p>
+        <p>Via Nazionale, 16 Villa d'Agri PZ</p>
+	<p><a href="/admin.html" class="admin-link">Area Riservata</a></p>
+    </footer>
+
+    <script src="index.js"></script>
+
+<!-- Popup pubblicitario -->
+<div id="popup-ad" class="popup-overlay" onclick="closePopup(event)">
+  <div class="popup-content">
+    <h2>Servizio Catering!</h2>
+    <p>Organizza il tuo evento speciale con i nostri deliziosi piatti freschi e genuini!</p>
+    <img src="/images/catering.png" alt="Servizio Catering">
+    <button class="popup-cta" onclick="openWhatsAppChat()">Contattaci Ora</button>
+  </div>
+</div>
+
+</body>
+</html>

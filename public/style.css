@@ -1,0 +1,1016 @@
+//* Reset di base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: radial-gradient(circle, #2f630a, #132613);
+    min-height: 100vh; /* Garantisce che lo sfondo copra l'intera altezza */
+    color: white;
+
+}
+
+.gradient-divider {
+    height: 7px;
+    background: linear-gradient(to right, #80a94e, #202a1f, #80a94e);
+    border-radius: 5px;
+    margin: 10px auto;
+	padding: 5px;
+    max-width: 90%; /* Per evitare che si estenda troppo */
+ 	position: relative;
+    overflow: hidden;
+}
+
+.gradient-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 50, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    animation: shimmerEffect 3s infinite;
+}
+
+/* Animazione di scintillio */
+@keyframes shimmerEffect {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+
+
+/* Header Hero */
+.hero {
+    background: url('Header-img.jpg') no-repeat center center/cover;
+    background-size: 100% 110%; /* Larghezza e altezza uguale alla sezione */
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 250px;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin: 0;
+    animation: fadeIn 1s ease-in-out;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    animation: fadeIn 2s ease-in-out;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.cta-button {
+    background: #202a1f;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    animation: fadeIn 3s ease-in-out, glowEffect 1.5s infinite alternate;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.cta-button:hover {
+    background: #233623;
+    transform: scale(1.1);
+}
+
+/* Stile per il logo nella hero */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 20px;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    max-width: 150px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 3s ease-in-out;
+    
+}
+.logo:hover {
+    transform: scale(1.1);
+    
+}
+@keyframes glowEffect {
+    from {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 1);
+    }
+}
+
+
+/* Sezione Menù */
+
+/* Menù a Schede */
+.menu {
+    padding: 40px;
+    text-align: center;
+}
+
+.menu-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.tab-link {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #202a1f;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.tab-link.active {
+    background: #a9d164;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+	
+
+}
+
+/* Animazione FadeIn */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Lista Piatti */
+.tab-content ul {
+     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+	justify-content: center; /* Centra la griglia */
+	max-width: 1200px; /* Limita la larghezza della griglia totale */
+	margin: auto;
+}
+
+.tab-content li {
+	text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    flex: 1 1 auto;
+    min-width: 250px;
+    max-width: 300px;
+    transition: background 0.3s;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    opacity: 0; /* Inizialmente nascosto */
+    transform: translateY(20px); /* Partenza animazione */
+    animation: slideIn 0.8s ease-out forwards; /* Applica l'animazione */
+    color: black;
+
+}
+
+#addDishForm {
+	margin: auto;
+}
+/* Ridimensionamento immagini per la pagina admin */
+#admin-primi-list img,
+#admin-secondi-list img,
+#admin-poke-list img,
+#admin-insalatone-list img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+#admin-primi-list,
+#admin-secondi-list,
+#admin-poke-list,
+#admin-insalatone-list {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* sistemazione Marker */
+#admin-primi-list li,
+#admin-secondi-list li,
+#admin-poke-list li,
+#admin-insalatone-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   padding-left: 20px; /* Spazio per il marker */
+    position: relative;
+}
+
+#admin-primi-list li::before,
+#admin-secondi-list li::before,
+#admin-poke-list li::before,
+#admin-insalatone-list li::before {
+    content: '•'; /* Aggiunge manualmente il marker */
+    font-size: 1.5rem;
+    color: #ff9800;
+    position: absolute;
+    left: 0;
+}
+
+.tab-content li img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.tab-content ul li:hover {
+    background: #ffe4c2;
+ 	transform: scale(1.05) !important;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tab-content.active ul li:hover {
+    background: #ffe4c2;
+ 	transform: scale(1.05) !important;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Lightbox Styling */
+/* Lightbox Overlay - Rimane a coprire l'intero schermo */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Contenuto della Lightbox centrato */
+.lightbox-content {
+    max-height: 80%;
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    animation: zoomIn 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+#lightbox-title,
+#lightbox-description {
+	color: black;
+}
+
+/* Correzione per la posizione del pulsante di chiusura */
+.close-lightbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ff9800;
+    background: none;
+    border: none;
+    z-index: 2000;
+}
+
+.close-lightbox:hover {
+    color: red;
+}
+
+/* Pulsanti di navigazione */
+.prev-lightbox, .next-lightbox {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    border: none;
+    background: none;
+    color: #ff9800;
+    cursor: pointer;
+}
+
+.prev-lightbox { left: 10px; }
+.next-lightbox { right: 10px; }
+
+/* Animazione di Zoom */
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* CSS per la sezione slideshow */
+
+.slideshow-container {
+    position: relative;
+    padding: 50px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 90%;
+    overflow: hidden;
+    height: 550px;
+}
+
+.slideshow {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;        /* immagine riempie tutta l'area */
+    background-position: center center;    /* centra la parte più importante */
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none; /* nascosto per default, mostrato via JS */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Stili per pulsanti navigazione slideshow */
+.prev-slide, .next-slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    color: white;
+    background-color: rgba(0,0,0,0.4);
+    border: none;
+    font-size: 24px;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.prev-slide {
+    left: 0;
+}
+
+.next-slide {
+    right: 0;
+}
+
+.prev-slide:hover, .next-slide:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* CSS per la sezione combinata con galleria, mappa e orari */
+#infotitolo {
+    padding: 10px;
+   text-align: center;
+}
+
+.info-section {
+    text-align: center;
+    padding: 50px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 90%;
+}
+
+.info-content {
+    display: flex;
+    flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.gallery-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+
+}
+
+.gallery-grid img {
+    width: 300px; /* Imposta la stessa larghezza per tutte le immagini */
+    height: 200px; /* Imposta la stessa altezza per tutte le immagini */
+    object-fit: cover; /* Mantiene le proporzioni senza distorsione */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+.google-map iframe {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 100%;
+}
+
+.hours-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.hours-grid div {
+    background: #D2D2D2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+}
+
+.hours-grid h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.hours-grid p {
+    font-size: 1rem;
+}
+
+/* Sezione Contatto */
+.contact {
+    padding: 40px 20px;
+    background: linear-gradient(to bottom, #2f630a, #132613);
+    text-align: center;
+    //border-top: 5px solid #ff9800;
+    //border-bottom: 5px solid #ff9800;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact h2 i {
+    margin-right: 10px;
+    color: #ff9800;
+}
+
+.contact-description {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.contact-container label {
+    color: black;
+}
+
+form {
+	
+    flex: 1;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spazio uniforme tra gli elementi */
+	box-sizing: border-box;
+
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+form input, form textarea {
+    width: calc(100% - 20px); /* Corretto per rientrare nel bordo */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background: #202a1f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+    background: #202a1f;
+    transform: scale(1.05);
+}
+
+.contact-image {
+    flex: 1;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-image img {
+    width: 400px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* Animazioni */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Animazioni */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pulsante Fluttuante */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.whatsapp-float img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-float img:hover {
+    transform: scale(1.1);
+}
+
+/* Popup della Chat */
+.whatsapp-popup {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 300px;
+    display: none;
+    z-index: 1001;
+    border: 1px solid #ddd;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: black;
+}
+
+.whatsapp-popup p {
+    color: black;
+}
+
+.close-popup {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ff9800;
+}
+
+.start-chat-button {
+    display: block;
+    padding: 10px 20px;
+    background-color: #25D366;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+.start-chat-button:hover {
+    background-color: #128C7E;
+}
+
+/* Animazione di Pulsazione */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(37, 211, 102, 0.8);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(37, 211, 102, 1);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(37, 211, 102, 0.8);
+    }
+}
+
+/* Sfondo oscurato del popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  display: none; /* nascosto di default */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Contenuto del popup */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  position: relative;
+  cursor: default; /* evita che cliccando qui si chiuda il popup */
+}
+
+.popup-content h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem; /* dimensione più grande per una migliore leggibilità */
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem; /* leggermente più grande anche qui */
+    color: #000;
+    line-height: 1.4;
+}
+
+.popup-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.popup-cta {
+  display: inline-block;
+  background-color: #25D366; /* WhatsApp verde */
+  color: white;
+  padding: 14px 28px; /* padding aumentato per dimensioni maggiori */
+  font-size: 1.2rem;  /* aumenta la grandezza del testo */
+  border: none;
+  border-radius: 8px; /* angoli leggermente più arrotondati */
+  margin-top: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.popup-cta:hover {
+  background-color: #128C7E;
+  transform: scale(1.05); /* piccolo effetto zoom al passaggio del mouse */
+}
+
+.admin-link {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.admin-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Sezione Responsive */
+
+/* Responsive per il logo */
+@media (max-width: 768px) {
+    .logo {
+        position: static;
+        margin: 0 auto;
+        display: block;
+        max-width: 100px;
+    }
+
+    .hero {
+        text-align: center;
+        align-items: center;
+        padding-top: 20px;
+	background-size: cover;
+	background-position: center center; /* mostra sempre la parte superiore */
+    }
+
+/* Titoli più leggibili su mobile */
+	.hero h1 {
+    		font-size: 2rem;
+	}
+
+	.hero p {
+   	 	font-size: 1.2rem;
+	}
+}
+
+/* Responsive per le tab */
+@media (max-width: 768px) {
+    .menu-tabs {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .tab-content ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tab-content li {
+        max-width: 100%;
+    }
+}
+
+/* Responsive per la galleria e mappa */
+@media (max-width: 768px) {
+
+	/* Slideshow Responsive */
+	.slideshow-container {
+    	height: 250px; /* Altezza ridotta per i dispositivi mobili */
+	}
+
+	.slide {
+    	background-position: center center;
+	}
+
+    .info-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .google-map iframe {
+        width: 100%;
+        height: 300px;
+    }
+
+    .gallery-grid img {
+        max-width: 100%;
+    }
+
+    .hours-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .hours-grid div {
+        max-width: 90%;
+    }
+
+/* Spostamento immagine sotto al form nella sezione contatti */
+    .contact-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .contact-image {
+        order: 2;
+        margin-top: 20px;
+    }
+
+    form {
+        order: 1;
+        width: 100%;
+        max-width: 400px;
+    }
+
+ /* Responsive per la lightbox */
+    .lightbox {
+        padding: 20px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    .lightbox-content {
+        width: 80%;
+        max-width: 500px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .close-lightbox {
+        position: absolute;
+        top: 10px;
+        right: 5px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .lightbox img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+}
+
+/* Responsive per mobile */
+@media (max-width: 480px) {
+  .popup-content {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+    /* Sezione Menu: Adatta le immagini alla larghezza dello schermo */
+
+    .tab-content {
+        overflow: hidden; /* impedisce alle immagini di uscire dal contenitore */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .tab-content ul {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tab-content ul li {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden; /* nasconde eventuali overflow delle immagini */
+    }
+
+    .tab-content ul li img {
+        width: 100%;
+        height: auto;
+        object-fit: cover; 
+        border-radius: 8px;
+        display: block; /* risolve eventuali margini inattesi */
+    }
+    /* Lightbox più compatta */
+    .lightbox-content {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .lightbox-content img {
+        width: 100%;
+        max-height: 40vh; /* limita altezza visibile */
+        object-fit: contain;
+    }
+
+    /* Form di contatto con immagine */
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    form, .contact-image {
+        width: 100%; /* assicurano larghezza uniforme senza overflow */
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contact-image img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Lightbox ottimizzata per schermi stretti */
+    .lightbox-content {
+        max-height: 80vh;
+        padding: 20px;
+        overflow-y: auto; /* Permette scrolling verticale se il contenuto è troppo lungo */
+    }
+
+    .close-lightbox {
+        top: 5px;
+        right: 10px;
+        font-size: 1.5rem;
+    }
+}
