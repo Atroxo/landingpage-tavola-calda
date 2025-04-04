@@ -800,6 +800,38 @@ footer {
 
 /* Sezione Responsive */
 
+@media (max-width: 600px) {
+  .popup-content {
+    padding: 20px;
+    width: 90%;
+    max-height: 50vh;
+    overflow-y: auto;
+
+    /* Riduzione dimensioni testo per adattare */
+    font-size: 1rem;
+  }
+
+  .popup-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .popup-content p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  .popup-content .popup-cta {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .popup-content img {
+      max-height: 270px; /* Altezza più compatta su mobile */
+      object-fit: contain;
+  }
+}
+
 /* Responsive per il logo */
 @media (max-width: 768px) {
     .logo {
