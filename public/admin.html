@@ -1,10 +1,10 @@
-<!-- admin.html - Pagina riservata per la gestione del menù con Header e Footer -->
+﻿<!-- admin.html - Pagina riservata per la gestione del men&ugrave; con Header e Footer -->
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestione Menù</title>
+    <title>Gestione Men&ugrave;</title>
     <link rel="stylesheet" href="style.css">
     <script src="admin.js" defer></script>
 
@@ -20,19 +20,20 @@
 </head>
 <body>
     <header class="hero">
-        <h1>Pannello di Gestione Menù</h1>
-        <p>Accedi per modificare il menù.</p>
+        <h1>Pannello di Gestione Men&ugrave;</h1>
+        <p>Accedi per modificare il men&ugrave;.</p>
     </header>
 
 
 
     <section class="menu">
-        <h2>Gestione Menù</h2>
+        <h2>Gestione Men&ugrave;</h2>
 
-        <div id="loginSection">
+        <div id="loginSection" class="admin-actions">
             <input type="password" id="passwordInput" placeholder="Inserisci la password">
             <button onclick="checkPassword()">Accedi</button>
             <button onclick="logout()" style="display: none;" id="logoutButton">Logout</button>
+            <a href="/index.html" class="btn btn-secondary" id="homeButton">&larr; Torna alla Home</a>
         </div>
 
        <form id="addDishForm" style="display: none;">
@@ -44,7 +45,7 @@
     <select id="dishCategory" required>
     	<option value="primi">Primo Piatto</option>
     	<option value="secondi">Secondo Piatto</option>
-    	<option value="poke">Pokè</option>
+    	<option value="poke">Pok&eacute;</option>
     	<option value="insalatone">Insalatone</option>
     </select>
 
@@ -60,15 +61,61 @@
         <h3>Secondi Piatti</h3>
         <ul id="admin-secondi-list"></ul>
 
-	<h3>Pokè</h3>
+	<h3>Pok&eacute;</h3>
 	<ul id="admin-poke-list"></ul>
 
 	<h3>Insalatone</h3>
 	<ul id="admin-insalatone-list"></ul>
+    
+    <h2 class="admin-section-title">Gestione Slideshow</h2>
+
+    <!-- Slideshow &#8211; Gestione immagini -->
+    <section class="admin-card slideshow-card">
+      <h3>Slideshow &#8211; Gestione immagini</h3>
+
+      <form id="slideUrlForm">
+        <div class="form-group">
+          <label for="slideUrlInput">Aggiungi da URL</label>
+          <input type="url" id="slideUrlInput" placeholder="https://... oppure /images/... " required>
+        </div>
+        <div class="form-group">
+          <label for="slideFit">Modalità adattamento</label>
+          <select id="slideFit">
+            <option value="cover" selected>cover</option>
+            <option value="contain">contain</option>
+          </select>
+        </div>
+        <button type="submit">Aggiungi immagine</button>
+      </form>
+
+      <form id="slideUploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="slideFileInput">Carica immagine</label>
+          <input type="file" id="slideFileInput" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label>Preview</label>
+          <div class="preview-box"><img id="slidePreview" alt="Anteprima"></div>
+        </div>
+        <button type="submit">Carica</button>
+      </form>
+
+      <div class="admin-toolbar">
+        <button id="reloadSlidesBtn" class="btn btn-secondary">Ricarica slideshow</button>
+      </div>
+
+      <div id="slidesGrid" class="grid-slides"></div>
+    </section>
     </section>
 
     <footer>
-        <p>© 2025 Loco Snack Bar. Tutti i diritti riservati.</p>
+        <p>&copy; 2025 Loco Snack Bar. Tutti i diritti riservati.</p>
     </footer>
 </body>
 </html>
+
+
+
+
+
+

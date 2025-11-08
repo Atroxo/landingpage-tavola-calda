@@ -3,14 +3,16 @@
     {
       "nome": "lasagna",
       "descrizione": "lasagna con carne macinata",
-      "immagine": "/images/default-primi.jpg"
+      "immagine": "/images/default-primi.jpg",
+      "attivo": true
     }
   ],
   "secondi": [
     {
       "nome": "pollo",
       "descrizione": "pollo arrosto",
-      "immagine": "/images/default-secondi.jpg"
+      "immagine": "/images/default-secondi.jpg",
+      "attivo": true
     }
   ],
   "poke": [

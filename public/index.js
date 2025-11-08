@@ -18,6 +18,16 @@ async function renderPublicMenu() {
 
         const menu = await response.json();
 
+        // Mostra solo i piatti con attivo: true (o senza campo attivo)
+        const filteredMenu = {
+            primi: (menu.primi || []).filter(p => p.attivo !== false),
+            secondi: (menu.secondi || []).filter(p => p.attivo !== false),
+            poke: (menu.poke || []).filter(p => p.attivo !== false),
+            insalatone: (menu.insalatone || []).filter(p => p.attivo !== false)
+        };
+        // Salva per uso nella lightbox
+        window.filteredMenu = filteredMenu;
+
        const primiList = document.getElementById('primi-list');
        const secondiList = document.getElementById('secondi-list');
        const pokeList = document.getElementById('poke-list');
@@ -28,28 +38,28 @@ async function renderPublicMenu() {
 	pokeList.innerHTML = '';
 	insalatoneList.innerHTML = '';
 
-        menu.primi.forEach((piatto, index) => {
+        filteredMenu.primi.forEach((piatto, index) => {
     primiList.innerHTML += `<li onclick="openLightbox(${index}, 'primi')">
         <img src="${piatto.immagine}" alt="${piatto.nome}">
         <span>${piatto.nome}</span>
     </li>`;
 });
 
-menu.secondi.forEach((piatto, index) => {
+filteredMenu.secondi.forEach((piatto, index) => {
     secondiList.innerHTML += `<li onclick="openLightbox(${index}, 'secondi')">
         <img src="${piatto.immagine}" alt="${piatto.nome}">
         <span>${piatto.nome}</span>
     </li>`;
 });
 
-menu.poke.forEach((piatto, index) => {
+filteredMenu.poke.forEach((piatto, index) => {
     pokeList.innerHTML += `<li onclick="openLightbox(${index}, 'poke')">
         <img src="${piatto.immagine}" alt="${piatto.nome}">
         <span>${piatto.nome}</span>
     </li>`;
 });
 
-menu.insalatone.forEach((piatto, index) => {
+filteredMenu.insalatone.forEach((piatto, index) => {
     insalatoneList.innerHTML += `<li onclick="openLightbox(${index}, 'insalatone')">
         <img src="${piatto.immagine}" alt="${piatto.nome}">
         <span>${piatto.nome}</span>
@@ -92,30 +102,26 @@ function openLightbox(index, categoria) {
     const lightboxTitle = document.getElementById('lightbox-title');
     const lightboxDescription = document.getElementById('lightbox-description');
 
-    fetch('/menu')
-        .then(response => response.json())
-        .then(menu => {
-            let piatto;
-            if (categoria === 'primi') {
-                piatto = menu.primi[index];
-            } else if (categoria === 'secondi') {
-                piatto = menu.secondi[index];
-            } else if (categoria === 'poke') {
-                piatto = menu.poke[index];
-            } else if (categoria === 'insalatone') {
-                piatto = menu.insalatone[index];
-            }
-            
-            if (piatto) {
-                lightboxImg.src = piatto.immagine;
-                lightboxTitle.textContent = piatto.nome;
-                lightboxDescription.textContent = piatto.descrizione;
-                lightbox.style.display = 'flex';
-            } else {
-                console.error('Piatto non trovato nella categoria:', categoria);
-            }
-        })
-        .catch(error => console.error('Errore nel caricamento del menù:', error));
+    const menu = window.filteredMenu || { primi: [], secondi: [], poke: [], insalatone: [] };
+    let piatto;
+    if (categoria === 'primi') {
+        piatto = menu.primi[index];
+    } else if (categoria === 'secondi') {
+        piatto = menu.secondi[index];
+    } else if (categoria === 'poke') {
+        piatto = menu.poke[index];
+    } else if (categoria === 'insalatone') {
+        piatto = menu.insalatone[index];
+    }
+
+    if (piatto) {
+        lightboxImg.src = piatto.immagine;
+        lightboxTitle.textContent = piatto.nome;
+        lightboxDescription.textContent = piatto.descrizione;
+        lightbox.style.display = 'flex';
+    } else {
+        console.error('Piatto non trovato nella categoria:', categoria);
+    }
 }
 
 // Funzione per chiudere la lightbox
@@ -189,41 +195,88 @@ document.querySelector('#contatti form').addEventListener('submit', async functi
 });
 
 let slideIndex = 0;
-let slides;
+let slides = [];
 let slideInterval;
 
-document.addEventListener("DOMContentLoaded", function () {
-    slides = document.querySelectorAll(".slide");
-    slides.forEach(slide => {
-        slide.style.opacity = '0';
-        slide.style.display = 'none';
+async function mergeDynamicSlides() {
+    const container = document.getElementById('slideshowContainer');
+    if (!container) return;
+
+    const prevBtn = container.querySelector('.prev-slide');
+    const nextBtn = container.querySelector('.next-slide');
+
+    // Rimuovi eventuali slide esistenti prima di ricostruire
+    container.querySelectorAll('.slide').forEach(slide => slide.remove());
+
+    let data = { slides: [] };
+    try {
+        const res = await fetch('/slideshow', { cache: 'no-store' });
+        if (res.ok) data = await res.json();
+    } catch (e) {
+        console.warn('Slideshow fetch skipped', e);
+    }
+
+    const slidesData = (data.slides || []).filter(s => s?.src && s.attivo !== false);
+    const anchor = prevBtn || nextBtn || null;
+
+    slidesData.forEach(s => {
+        const fitValue = s.fit === 'contain' ? 'contain' : 'cover';
+        const slideNode = document.createElement('div');
+        slideNode.className = 'slide';
+        slideNode.dataset.fit = fitValue;
+
+        const img = document.createElement('img');
+        img.className = 'slide-img';
+        img.src = s.src;
+        img.alt = 'Slide';
+        img.dataset.fit = fitValue;
+
+        slideNode.appendChild(img);
+
+        if (anchor) {
+            container.insertBefore(slideNode, anchor);
+        } else {
+            container.appendChild(slideNode);
+        }
     });
 
-    showSlide(slideIndex);
-    slideInterval = setInterval(() => changeSlide(1), 4000);
-});
+    slides = container.querySelectorAll('.slide');
+}
 
-function showSlide(index) {
-    slides.forEach(slide => {
-        slide.style.opacity = '0';
-        slide.style.display = 'none';
-    });
-
-    if (index >= slides.length) slideIndex = 0;
-    if (index < 0) slideIndex = slides.length - 1;
-
-    slides[slideIndex].style.display = "block";
-    setTimeout(() => {
-        slides[slideIndex].style.opacity = "1";
-    }, 50); // fade-in morbido
+function showSlide(idx) {
+    if (!slides || !slides.length) return;
+    if (idx >= slides.length) slideIndex = 0;
+    if (idx < 0) slideIndex = slides.length - 1;
+    slides.forEach(sl => sl.classList.remove('active'));
+    slides[slideIndex].classList.add('active');
 }
 
 function changeSlide(n) {
+    if (!slides || !slides.length) return;
     clearInterval(slideInterval);
     slideIndex += n;
     showSlide(slideIndex);
     slideInterval = setInterval(() => changeSlide(1), 4000);
 }
+
+function startSlideshow() {
+    if (!slides || !slides.length) return;
+    slides.forEach((sl, i) => sl.classList.toggle('active', i === 0));
+    slideIndex = 0;
+    if (slideInterval) clearInterval(slideInterval);
+    slideInterval = setInterval(() => changeSlide(1), 4000);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const container = document.getElementById('slideshowContainer');
+    if (container) {
+        slides = container.querySelectorAll('.slide');
+        await mergeDynamicSlides();
+        startSlideshow();
+        // esponi per i bottoni
+        window.changeSlide = changeSlide;
+    }
+});
 
 document.addEventListener("DOMContentLoaded", function() {
     const popup = document.getElementById('popup-ad');

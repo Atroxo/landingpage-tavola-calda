@@ -1,0 +1,123 @@
+{
+  "slides": [
+    {
+      "id": "s1762443121356",
+      "src": "/images/catering.png",
+      "attivo": true,
+      "order": 1,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083190",
+      "src": "/images/prodotti/prodotto1.jpg",
+      "attivo": true,
+      "order": 2,
+      "fit": "cover"
+    },
+    {
+      "id": "s1762445083191",
+      "src": "/images/prodotti/prodotto10.jpg",
+      "attivo": true,
+      "order": 3,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083192",
+      "src": "/images/prodotti/prodotto11.jpg",
+      "attivo": true,
+      "order": 4,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083193",
+      "src": "/images/prodotti/prodotto12.jpg",
+      "attivo": true,
+      "order": 5,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083194",
+      "src": "/images/prodotti/prodotto13.jpg",
+      "attivo": true,
+      "order": 6,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083195",
+      "src": "/images/prodotti/prodotto14.jpg",
+      "attivo": true,
+      "order": 7,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083196",
+      "src": "/images/prodotti/prodotto15.jpg",
+      "attivo": true,
+      "order": 8,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083197",
+      "src": "/images/prodotti/prodotto16.jpg",
+      "attivo": true,
+      "order": 9,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083198",
+      "src": "/images/prodotti/prodotto2.jpg",
+      "attivo": true,
+      "order": 10,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083199",
+      "src": "/images/prodotti/prodotto3.jpg",
+      "attivo": true,
+      "order": 11,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083200",
+      "src": "/images/prodotti/prodotto4.jpg",
+      "attivo": true,
+      "order": 12,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083201",
+      "src": "/images/prodotti/prodotto5.jpg",
+      "attivo": true,
+      "order": 13,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083202",
+      "src": "/images/prodotti/prodotto6.jpg",
+      "attivo": true,
+      "order": 14,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083203",
+      "src": "/images/prodotti/prodotto7.jpg",
+      "attivo": true,
+      "order": 15,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083204",
+      "src": "/images/prodotti/prodotto8.jpg",
+      "attivo": true,
+      "order": 16,
+      "fit": "contain"
+    },
+    {
+      "id": "s1762445083205",
+      "src": "/images/prodotti/prodotto9.jpg",
+      "attivo": true,
+      "order": 17,
+      "fit": "contain"
+    }
+  ]
+}

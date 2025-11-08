@@ -1,4 +1,4 @@
-//* Reset di base */
+﻿//* Reset di base */
 * {
     box-sizing: border-box;
 }
@@ -127,9 +127,9 @@ body {
 }
 
 
-/* Sezione Menù */
+/* Sezione MenÃ¹ */
 
-/* Menù a Schede */
+/* MenÃ¹ a Schede */
 .menu {
     padding: 40px;
     text-align: center;
@@ -213,7 +213,9 @@ body {
 
 }
 
-#addDishForm {
+#addDishForm,
+#slideUrlForm,
+#slideUploadForm {
 	margin: auto;
 }
 /* Ridimensionamento immagini per la pagina admin */
@@ -252,11 +254,60 @@ body {
 #admin-secondi-list li::before,
 #admin-poke-list li::before,
 #admin-insalatone-list li::before {
-    content: '•'; /* Aggiunge manualmente il marker */
+    content: 'â€¢'; /* Aggiunge manualmente il marker */
     font-size: 1.5rem;
     color: #ff9800;
     position: absolute;
     left: 0;
+}
+
+/* Admin: stato piatti (attivo/disattivo) */
+#admin-primi-list li.dish-item,
+#admin-secondi-list li.dish-item,
+#admin-poke-list li.dish-item,
+#admin-insalatone-list li.dish-item {
+    border-left: 4px solid transparent;
+    border-radius: 8px;
+    padding: 10px 12px 10px 16px; /* spazio per il bordo sinistro */
+    transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+#admin-primi-list li.dish-item.active,
+#admin-secondi-list li.dish-item.active,
+#admin-poke-list li.dish-item.active,
+#admin-insalatone-list li.dish-item.active {
+    border-left-color: #22c55e; /* verde */
+}
+
+#admin-primi-list li.dish-item.active .dish-name::before,
+#admin-secondi-list li.dish-item.active .dish-name::before,
+#admin-poke-list li.dish-item.active .dish-name::before,
+#admin-insalatone-list li.dish-item.active .dish-name::before {
+    content: '\2713'; /* check âœ“ */
+    color: #22c55e;
+    margin-right: 6px;
+}
+
+#admin-primi-list li.dish-item.inactive,
+#admin-secondi-list li.dish-item.inactive,
+#admin-poke-list li.dish-item.inactive,
+#admin-insalatone-list li.dish-item.inactive {
+    background: #f3f4f6; /* grigio chiaro */
+}
+
+#admin-primi-list li.dish-item.inactive .dish-name,
+#admin-secondi-list li.dish-item.inactive .dish-name,
+#admin-poke-list li.dish-item.inactive .dish-name,
+#admin-insalatone-list li.dish-item.inactive .dish-name {
+    color: #6b7280; /* testo grigio */
+}
+
+#admin-primi-list li.dish-item.inactive img,
+#admin-secondi-list li.dish-item.inactive img,
+#admin-poke-list li.dish-item.inactive img,
+#admin-insalatone-list li.dish-item.inactive img {
+    filter: grayscale(100%);
+    opacity: 0.7;
 }
 
 .tab-content li img {
@@ -375,19 +426,19 @@ body {
     height: 100%;
     width: 100%;
     position: relative;
+    background-color: rgba(0, 0, 0, 0.1); /* semitrasparenza uniforme dietro le immagini */
 }
 
 .slide {
     width: 100%;
     height: 100%;
-    background-size: cover;        /* immagine riempie tutta l'area */
-    background-position: center center;    /* centra la parte più importante */
-    background-repeat: no-repeat;
     position: absolute;
     top: 0;
     left: 0;
     display: none; /* nascosto per default, mostrato via JS */
+    opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    overflow: hidden;
 }
 
 /* Stili per pulsanti navigazione slideshow */
@@ -556,7 +607,7 @@ form {
     width: 100%;
 }
 
-form input, form textarea {
+form input, form textarea, form select {
     width: calc(100% - 20px); /* Corretto per rientrare nel bordo */
     padding: 10px;
     border: 1px solid #ccc;
@@ -750,14 +801,14 @@ footer {
 
 .popup-content h2 {
     font-family: 'Great Vibes', cursive;
-    font-size: 2.2rem; /* dimensione più grande per una migliore leggibilità */
+    font-size: 2.2rem; /* dimensione piÃ¹ grande per una migliore leggibilitÃ  */
     color: #000;
     margin-bottom: 10px;
 }
 
 .popup-content p {
     font-family: 'Great Vibes', cursive;
-    font-size: 1.6rem; /* leggermente più grande anche qui */
+    font-size: 1.6rem; /* leggermente piÃ¹ grande anche qui */
     color: #000;
     line-height: 1.4;
 }
@@ -776,7 +827,7 @@ footer {
   padding: 14px 28px; /* padding aumentato per dimensioni maggiori */
   font-size: 1.2rem;  /* aumenta la grandezza del testo */
   border: none;
-  border-radius: 8px; /* angoli leggermente più arrotondati */
+  border-radius: 8px; /* angoli leggermente piÃ¹ arrotondati */
   margin-top: 15px;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -827,7 +878,7 @@ footer {
   }
 
   .popup-content img {
-      max-height: 270px; /* Altezza più compatta su mobile */
+      max-height: 270px; /* Altezza piÃ¹ compatta su mobile */
       object-fit: contain;
   }
 }
@@ -849,7 +900,7 @@ footer {
 	background-position: center center; /* mostra sempre la parte superiore */
     }
 
-/* Titoli più leggibili su mobile */
+/* Titoli piÃ¹ leggibili su mobile */
 	.hero h1 {
     		font-size: 2rem;
 	}
@@ -883,10 +934,6 @@ footer {
 	/* Slideshow Responsive */
 	.slideshow-container {
     	height: 250px; /* Altezza ridotta per i dispositivi mobili */
-	}
-
-	.slide {
-    	background-position: center center;
 	}
 
     .info-content {
@@ -1000,7 +1047,7 @@ footer {
         border-radius: 8px;
         display: block; /* risolve eventuali margini inattesi */
     }
-    /* Lightbox più compatta */
+    /* Lightbox piÃ¹ compatta */
     .lightbox-content {
         max-width: 90%;
         padding: 20px;
@@ -1037,12 +1084,202 @@ footer {
     .lightbox-content {
         max-height: 80vh;
         padding: 20px;
-        overflow-y: auto; /* Permette scrolling verticale se il contenuto è troppo lungo */
+        overflow-y: auto; /* Permette scrolling verticale se il contenuto Ã¨ troppo lungo */
     }
 
     .close-lightbox {
         top: 5px;
         right: 10px;
         font-size: 1.5rem;
-    }
 }
+}
+
+/* Slideshow Fade Support (non invasivo) */
+.slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.slide-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background-color: transparent; /* lascia visibile l'overlay semitrasparente */
+}
+
+.slide-img[data-fit="contain"] {
+    object-fit: contain;
+    background-color: transparent;
+}
+
+.slideshow-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.prev-slide,
+.next-slide {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.prev-slide { left: 10px; }
+.next-slide { right: 10px; }
+
+/* =========================== */
+/* Admin Buttons & Actions CSS */
+/* =========================== */
+
+/* Base button */
+.btn {
+    background: #ff9800;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+    background: #e57c00;
+}
+
+/* Outline button */
+.btn-outline {
+    background: transparent;
+    color: #ff9800;
+    border: 2px solid #ff9800;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-outline:hover {
+    background: #ffe4c2; /* arancione chiaro coerente con hover giÃ  usato */
+}
+
+/* Secondary button (scuro) */
+.btn-secondary {
+    background: #202a1f;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background: #173015;
+}
+
+/* Stato disabilitato */
+.btn-disabled,
+.btn:disabled,
+.btn-outline:disabled,
+.btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Contenitore azioni admin */
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.admin-card { background:#fff; border-radius:12px; padding:16px; margin:16px auto; max-width:960px; box-shadow:0 4px 12px rgba(0,0,0,.08); }
+.preview-box { width:100%; max-width:260px; aspect-ratio: 4/3; border:1px dashed #ccc; border-radius:8px; display:flex; align-items:center; justify-content:center; background:#fafafa; overflow:hidden; margin:0 auto; }
+.preview-box img { width:100%; height:100%; object-fit:cover; display:none; }
+
+.admin-toolbar { display:flex; gap:10px; margin:8px 0 16px; align-items:center; }
+
+.grid-slides {
+  display:grid;
+  gap:12px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+.slide-card {
+  border:1px solid #eee; border-radius:10px; overflow:hidden; background:#fff;
+  display:flex; flex-direction:column; box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.slide-card .thumb {
+  width:100%;
+  aspect-ratio: 4/3;
+  object-fit:cover;
+  display:block;
+  background:#111;
+}
+.slide-card .thumb[data-fit="contain"] { object-fit: contain; }
+.slide-card .thumb[data-fit="cover"] { object-fit: cover; }
+.slide-card .meta {
+  padding:10px; display:flex; flex-direction:column; gap:8px;
+}
+.slide-status {
+  font-size:.85rem; font-weight:600;
+}
+.fit-control { display:flex; flex-direction:column; gap:6px; font-size:.85rem; }
+.fit-select {
+  padding:8px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:.9rem;
+  background:#fff;
+}
+.slide-status.active { color:#2e7d32; }
+.slide-status.inactive { color:#9e9e9e; }
+.slide-actions { display:flex; gap:8px; }
+
+.admin-section-title {
+  margin:32px auto 12px;
+  text-align:center;
+  color:#202a1f;
+  font-size:1.75rem;
+}
+
+.slideshow-card {
+  margin-top:32px;
+  padding-top:28px;
+  border-top:4px solid #ff9800;
+}
+
+.slideshow-card .admin-toolbar {
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+@media (max-width: 480px) {
+  .grid-slides { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .preview-box { max-width:100%; }
+}
+
+
+
+
+
+
